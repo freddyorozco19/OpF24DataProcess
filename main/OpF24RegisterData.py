@@ -1,4 +1,4 @@
 import streamlit as st
 
-st.subheader('Register Data')
+st.subheader('REGISTER DATA')
 st.divider()
