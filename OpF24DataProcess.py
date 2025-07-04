@@ -36,14 +36,14 @@ im = Image.open("Resources/Isotipo-FF046.ico")
 st.set_page_config(layout="wide", page_icon=im)
 st.logo("Resources/Isotipo-FF046.png")
 navigation_tree = {"Main": [
-        st.Page("main/OptaEventingData.py", title="Extract Eventing Data", icon=":material/download:"),
-        st.Page("main/OptaJoinEventingData.py", title="Join Eventing Data", icon=":material/cell_merge:"),
-        st.Page("main/OptaExploreEventingData.py", title="Explore Eventing Data", icon=":material/sports_and_outdoors:"),
-        st.Page("main/OptaExploreMatchData.py", title="Explore Match Data", icon=":material/search_insights:"),
-        st.Page("main/OptaExploreTeamData.py", title="Explore Team Data", icon=":material/reduce_capacity:"),
-        st.Page("main/OptaExploreLeagueData.py", title="Explore League Data", icon=":material/analytics:"),   
-        st.Page("main/OptaExtractProMatchData.py", title="Extract Pro Match Data", icon=":material/leaderboard:"),
-        st.Page("main/OptaRegisterData.py", title="Register Data", icon=":material/lists:"),
+        #st.Page("main/OptaEventingData.py", title="Extract Eventing Data", icon=":material/download:"),
+        #st.Page("main/OptaJoinEventingData.py", title="Join Eventing Data", icon=":material/cell_merge:"),
+        #st.Page("main/OptaExploreEventingData.py", title="Explore Eventing Data", icon=":material/sports_and_outdoors:"),
+        #st.Page("main/OptaExploreMatchData.py", title="Explore Match Data", icon=":material/search_insights:"),
+        #st.Page("main/OptaExploreTeamData.py", title="Explore Team Data", icon=":material/reduce_capacity:"),
+        #st.Page("main/OptaExploreLeagueData.py", title="Explore League Data", icon=":material/analytics:"),   
+        #st.Page("main/OptaExtractProMatchData.py", title="Extract Pro Match Data", icon=":material/leaderboard:"),
+        #st.Page("main/OptaRegisterData.py", title="Register Data", icon=":material/lists:"),
         st.Page("main/OptaF24ExtractData.py", title="F24 Extract Data", icon=":material/download:")]}
 nav = st.navigation(navigation_tree, position="sidebar")
 nav.run()
