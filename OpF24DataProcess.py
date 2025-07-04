@@ -43,7 +43,7 @@ navigation_tree = {"Main": [
         #st.Page("main/OptaExploreTeamData.py", title="Explore Team Data", icon=":material/reduce_capacity:"),
         #st.Page("main/OptaExploreLeagueData.py", title="Explore League Data", icon=":material/analytics:"),   
         #st.Page("main/OptaExtractProMatchData.py", title="Extract Pro Match Data", icon=":material/leaderboard:"),
-        #st.Page("main/OptaRegisterData.py", title="Register Data", icon=":material/lists:"),
+        st.Page("main/OpF24ExtractData.py", title="Register Data", icon=":material/lists:"),
         st.Page("main/OpF24RegisterData.py", title="F24 Extract Data", icon=":material/download:")]}
 nav = st.navigation(navigation_tree, position="sidebar")
 nav.run()
