@@ -1,0 +1,26 @@
+compress_pickle
+hydralit
+hydralit_components
+streamlit
+numpy >=1.20
+hotstepper
+altair
+pandas
+spacy
+validators
+bokeh
+srsly
+spacy-streamlit
+astroquery
+sunpy
+astropy
+pydeck
+scipy
+mplsoccer
+openpyxl
+xlsxwriter
+scikit-learn
+seaborn
+google-auth
+google-auth-oauthlib
+google-api-python-client
