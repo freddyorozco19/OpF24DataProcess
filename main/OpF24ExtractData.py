@@ -1,5 +1,5 @@
 import streamlit as st
 
-st.subheader('Extract Data')
+st.subheader('EXTRACT DATA')
 
 st.divider()
