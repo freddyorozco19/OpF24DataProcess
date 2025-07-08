@@ -29,6 +29,7 @@ import sklearn
 from sklearn.preprocessing import StandardScaler
 
 ################################################################################################################################################################################################################################################################################################################################################
+
 def reparar_y_extraer(cadena):
     # Reparar claves sin comillas: 1": → "1":
     cadena = re.sub(r'(?<=\{|\s)(\d+)":', r'"\1":', cadena)
@@ -172,6 +173,7 @@ df['NextPlayer'] = np.where(
 
 df_backup = df
 
+################################################################################################################################################################################################################################################################################################################################################
 #Filtros
 filteropt01, filteropt02, filteropt03, filteropt04, filteropt05, filteropt06 = st.columns(6)
 
@@ -184,6 +186,7 @@ with filteropt01:
         df = dfbk_filteropt_01
     else:
         df = df[df['matchday'] == MatchdaySel].reset_index(drop=True)
+        
 with filteropt02:
     MatchIDList = df['matchId'].drop_duplicates().tolist()
     MatchIDList.insert(0, "All Matches")  
@@ -203,6 +206,7 @@ with filteropt03:
         df = dfbk_filteropt_03
     else:
         df = df[df['team_id'] == TeamSel].reset_index(drop=True)
+        
 with filteropt04:
     PlayerList = df['player_id'].drop_duplicates().tolist()
     PlayerList.insert(0, "All Players")  
@@ -236,7 +240,6 @@ with filteropt06:
 filteropt11, filteropt12, filteropt13, filteropt14, filteropt15, filteropt16 = st.columns(6)
 
 with filteropt01:
-    
     NextPlayerList = df['NextPlayer'].drop_duplicates().tolist()
     NextPlayerList.insert(0, "All NextPlayer")  
     NextPlayerSel = st.selectbox('NextPlayer', NextPlayerList)
@@ -246,6 +249,8 @@ with filteropt01:
     else:
         df = df[df['NextPlayer'] == NextPlayerSel].reset_index(drop=True)
 df = df[['matchday', 'matchId', 'team_id', 'player_id', 'player_name', 'Event', 'type_id', 'outcome', 'LastEvent', 'NextEvent', 'NextPlayer', 'min', 'sec', 'x', 'y', 'x2', 'y2', 'qualifiers', 'qualifiers2', 'qualifiers3', 'Cross', 'CornerTaken', 'Throw-in', 'Handball', 'Overrun', 'AerialFoul', 'DuelosOfensivos', 'DuelosDefensivos']]
+
+################################################################################################################################################################################################################################################################################################################################################
 
 st.dataframe(df)
 
