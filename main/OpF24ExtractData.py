@@ -9,7 +9,7 @@ with st.form(key='form1'):
     submit_button2 = st.form_submit_button(label='Aceptar')
 
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file, sep=',')
+    df = pd.read_csv(uploaded_file, sep=';')
 
 
 df = df.iloc[6:].reset_index(drop=True)
