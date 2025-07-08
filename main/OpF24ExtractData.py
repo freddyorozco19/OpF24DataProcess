@@ -105,6 +105,8 @@ df['type_id'] = df['type_id'].replace(65, 'Contentious Referee')
 df["Event"] = ""
 df.loc[(df["type_id"] == "Pass") & (df["outcome"] == True), "Event"] = "Successful Passes"
 df.loc[(df["type_id"] == "Pass") & (df["outcome"] == False), "Event"] = "Unsuccessful Passes"
+df.loc[(df["type_id"] == "Offside Pass"), "Event"] = "Offside Pass"
+
 df.loc[(df["type_id"] == "Clearance"), "Event"] = "Clearance"
 df.loc[(df["type_id"] == "Interception"), "Event"] = "Interception"
 df.loc[(df["type_id"] == "Ball touch"), "Event"] = "Touch"
@@ -113,6 +115,7 @@ df.loc[(df["type_id"] == "Foul") & (df["outcome"] == False), "Event"] = "Foul Lo
 df.loc[(df["type_id"] == "Foul") & (df["outcome"] == True), "Event"] = "Foul Won"
 df.loc[(df["type_id"] == "Goal"), "Event"] = "Goal"
 df.loc[(df["type_id"] == "Shot On Target"), "Event"] = "Shot On Target"
+
 
 
 
