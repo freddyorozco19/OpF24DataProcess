@@ -106,7 +106,10 @@ df["Event"] = ""
 df.loc[(df["type_id"] == "Pass") & (df["outcome"] == True), "Event"] = "Successful Passes"
 df.loc[(df["type_id"] == "Pass") & (df["outcome"] == False), "Event"] = "Unsuccessful Passes"
 df.loc[(df["type_id"] == "Clearance"), "Event"] = "Clearance"
+df.loc[(df["type_id"] == "Interception"), "Event"] = "Interception"
 df.loc[(df["type_id"] == "Ball touch"), "Event"] = "Touch"
+df.loc[(df["type_id"] == "Ball recovery"), "Event"] = "Recovery"
+
 
 
 df['qualifiers2'] = df['qualifiers'].apply(reparar_y_extraer)
