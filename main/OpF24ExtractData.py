@@ -111,6 +111,7 @@ df.loc[(df["type_id"] == "Ball touch"), "Event"] = "Touch"
 df.loc[(df["type_id"] == "Ball recovery"), "Event"] = "Recovery"
 df.loc[(df["type_id"] == "Foul") & (df["outcome"] == False), "Event"] = "Foul Lost"
 df.loc[(df["type_id"] == "Foul") & (df["outcome"] == True), "Event"] = "Foul Won"
+df.loc[(df["type_id"] == "Goal"), "Event"] = "Goal"
 df.loc[(df["type_id"] == "Shot On Target"), "Event"] = "Shot On Target"
 
 
