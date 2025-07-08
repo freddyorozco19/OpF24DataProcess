@@ -28,6 +28,22 @@ import re
 import sklearn
 from sklearn.preprocessing import StandardScaler
 
+def reparar_y_extraer(cadena):
+    # Reparar claves sin comillas: 1": → "1":
+    cadena = re.sub(r'(?<=\{|\s)(\d+)":', r'"\1":', cadena)
+    cadena = cadena.replace('null', 'null')
+    # Buscar todos los bloques clave + valor
+    patron = r'"(\d+)":\s*\{[^{}]*?"value":\s*(null|"[^"]*"|[\d.]+)'
+    matches = re.findall(patron, cadena)
+    resultado = []
+    for clave, valor in matches:
+        if valor.startswith('"') and valor.endswith('"'):
+            valor = valor[1:-1]
+        elif valor == 'null':
+            valor = 'null'
+        resultado.append(f'{clave}:{valor}')
+    return ', '.join(resultado)
+
 st.markdown("<style> div { text-align: center } </style>", unsafe_allow_html=True)
 st.subheader('EXTRACT DATA')
 
