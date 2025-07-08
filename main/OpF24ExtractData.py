@@ -120,7 +120,7 @@ df.loc[(df["type_id"] == "Tackle") & (df["outcome"] == True), "Event"] = "Tackle
 df.loc[(df["type_id"] == "Tackle") & (df["outcome"] == False), "Event"] = "Tackle Lost"
 df.loc[(df["type_id"] == "Aerial") & (df["outcome"] == True), "Event"] = "Aerial Won"
 df.loc[(df["type_id"] == "Aerial") & (df["outcome"] == False), "Event"] = "Aerial Lost"
-
+df.loc[(df["type_id"] == "Deleted Event"), "Event"] = "Deleted Event"
 
 
 
