@@ -118,7 +118,8 @@ df.loc[(df["type_id"] == "Shot On Target"), "Event"] = "Shot On Target"
 df.loc[(df["type_id"] == "Shot Off Target"), "Event"] = "Shot Off Target"
 df.loc[(df["type_id"] == "Tackle") & (df["outcome"] == True), "Event"] = "Tackle Won"
 df.loc[(df["type_id"] == "Tackle") & (df["outcome"] == False), "Event"] = "Tackle Lost"
-
+df.loc[(df["type_id"] == "Aerial") & (df["outcome"] == True), "Event"] = "Aerial Won"
+df.loc[(df["type_id"] == "Aerial") & (df["outcome"] == False), "Event"] = "Aerial Lost"
 
 
 
