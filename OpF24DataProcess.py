@@ -49,5 +49,4 @@ navigation_tree = {"Main": [
         st.Page("main/OpF24RegisterData.py", title="F24 Register Data", icon=":material/download:")]}
 nav = st.navigation(navigation_tree, position="sidebar")
 nav.run()
-
 st.sidebar.write("2025")
