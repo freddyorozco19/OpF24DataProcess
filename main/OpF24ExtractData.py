@@ -57,7 +57,6 @@ with st.form(key='form4'):
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file, sep=';')
 
-
 df = df.iloc[6:].reset_index(drop=True)
 df = df.drop(columns=['timestamp', 'date'])
 
