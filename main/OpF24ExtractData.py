@@ -270,7 +270,6 @@ df = df[['matchday', 'matchId', 'team_id', 'player_id', 'player_name', 'Event', 
 ################################################################################################################################################################################################################################################################################################################################################
 
 st.dataframe(df)
-
 st.divider()
 
 duelo_eventos = ['Challenge', 'Foul', 'Aerial', 'Take On', 'Tackle', 'Dispossessed']
@@ -419,3 +418,5 @@ resultado_total['PasesRecibidos'] = resultado_total['PasesRecibidos'].fillna(0).
 st.write(resultado_total)
 st.divider()
 
+df = df_backup
+st.dataframe(df)
