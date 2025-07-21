@@ -272,3 +272,150 @@ df = df[['matchday', 'matchId', 'team_id', 'player_id', 'player_name', 'Event', 
 st.dataframe(df)
 
 st.divider()
+
+duelo_eventos = ['Challenge', 'Foul', 'Aerial', 'Take On', 'Tackle', 'Dispossessed']
+def contar_eventos(grupo):
+    # Filtrar duelos
+    duelos = grupo[grupo['type_id'].isin(duelo_eventos)]
+    #duelos = duelos[~((duelos['type_id'] == 'Foul') & (duelos['Handball'] == True))]
+    duelos = duelos[~(((duelos['type_id'] == 'Foul') & (duelos['Handball'] == True)) |
+    ((duelos['type_id'] == 'Take On') & (duelos['Overrun'] == True)))]
+    # Contar duelos y aerials
+    total_duelos = len(duelos)
+    total_aerials = ((grupo['type_id'] == 'Aerial') | ((grupo['type_id'] == 'Foul') & (grupo['AerialFoul'] == True))).sum()
+    duelos_aereos_w = grupo[((grupo['type_id'] == 'Aerial') | ((grupo['type_id'] == 'Foul') & (grupo['AerialFoul'] == True))) & (grupo['outcome'] == True)].shape[0]
+
+    duelos_w = duelos[
+        ((duelos['type_id'] == 'Foul') & (duelos['outcome'] == True)) |
+        (duelos['type_id'] == 'Aerial') & (duelos['outcome'] == True) |
+        (duelos['type_id'] == 'Take On') & (duelos['outcome'] == True) |
+        (duelos['type_id'] == 'Tackle')
+    ].shape[0]
+
+    duelos_w_df = duelos[
+        ((duelos['type_id'] == 'Foul') & (duelos['outcome'] == True)) |
+        ((duelos['type_id'] == 'Aerial') & (duelos['outcome'] == True)) |
+        ((duelos['type_id'] == 'Take On') & (duelos['outcome'] == True)) |
+        (duelos['type_id'] == 'Tackle')]
+
+    duelos_f = duelos[
+        ((duelos['type_id'] == 'Foul') & (duelos['outcome'] == False)) |
+        (duelos['type_id'] == 'Aerial') & (duelos['outcome'] == False) |
+        (duelos['type_id'] == 'Take On') & (duelos['outcome'] == False) |
+        (duelos['type_id'] == 'Dispossessed') | (duelos['type_id'] == 'Challenge')
+    ].shape[0]
+
+    duelos_f_df = duelos[
+        ((duelos['type_id'] == 'Foul') & (duelos['outcome'] == False)) |
+        (duelos['type_id'] == 'Aerial') & (duelos['outcome'] == False) |
+        (duelos['type_id'] == 'Take On') & (duelos['outcome'] == False) |
+        (duelos['type_id'] == 'Dispossessed') | (duelos['type_id'] == 'Challenge')]
+    
+    total_duelos_ofensivos = duelos[duelos['DuelosOfensivos'] == True].shape[0]
+    total_duelos_defensivos = duelos[duelos['DuelosDefensivos'] == True].shape[0]
+
+    duelos_of_w = duelos_w_df[duelos_w_df['DuelosOfensivos'] == True].shape[0]
+    duelos_of_f = duelos_f_df[duelos_f_df['DuelosOfensivos'] == True].shape[0]
+
+    duelos_def_w = duelos_w_df[duelos_w_df['DuelosDefensivos'] == True].shape[0]
+    duelos_def_f = duelos_f_df[duelos_f_df['DuelosDefensivos'] == True].shape[0]
+
+    duelo_ground = ['Challenge', 'Foul', 'Take On', 'Tackle', 'Dispossessed']
+    # Filtrar duelos de tipo ground
+    duelos_ground_df = duelos[(duelos['type_id'].isin(duelo_ground)) & ~((duelos['type_id'] == 'Foul') & (duelos['AerialFoul'] == True))]
+    # Contar total de duelos ground
+    total_duelos_ground = duelos_ground_df.shape[0]
+    # DuelosGround W
+    duelos_ground_w = duelos_ground_df[
+        ((duelos_ground_df['type_id'] == 'Foul') & (duelos_ground_df['outcome'] == True)) |
+        ((duelos_ground_df['type_id'] == 'Take On') & (duelos_ground_df['outcome'] == True)) |
+        (duelos_ground_df['type_id'] == 'Tackle')
+    ].shape[0]
+    
+    # DuelosGround F
+    duelos_ground_f = duelos_ground_df[
+        ((duelos_ground_df['type_id'] == 'Foul') & (duelos_ground_df['outcome'] == False)) |
+        ((duelos_ground_df['type_id'] == 'Take On') & (duelos_ground_df['outcome'] == False)) |
+        (duelos_ground_df['type_id'] == 'Dispossessed') | (duelos['type_id'] == 'Challenge')
+    ].shape[0]
+
+    
+    return pd.Series({'Duelos Totales': total_duelos, 'Duelos W': duelos_w, 'DuelosAéreos': total_aerials, 'DuelosAéreos W': duelos_aereos_w, 'DuelosGround': total_duelos_ground, 'DuelosGroundW': duelos_ground_w, 'DuelosGroundF': duelos_ground_f, 'DuelosOfensivos': total_duelos_ofensivos, 'DuelosOfensivos W': duelos_of_w, 'DuelosOfensivos F': duelos_of_f, 'DuelosDefensivos': total_duelos_defensivos, 'DuelosDefensivos W': duelos_def_w, 'DuelosDefensivos F': duelos_def_f})
+
+df = df_backup
+df_resultado = df.groupby(['matchId', 'player_id', 'player_name', 'team_id']).apply(contar_eventos).reset_index()
+
+#df_resultado['Duelos %'] = round(((df_resultado['Duelos W'] / df_resultado['Duelos Totales']).fillna(0) * 100), 1)
+df_resultado.insert(6, 'Duelos %', round(((df_resultado['Duelos W'] / df_resultado['Duelos Totales']).fillna(0) * 100), 1))
+
+st.dataframe(df_resultado)
+st.divider()
+
+# --- BLOQUE 1: Cálculo de estadísticas de pase ---
+df = df_backup.copy()
+
+pases = df[df['type_id'] == 'Pass'].copy()
+pases_validos = pases[(pases['Cross'] == False) & (pases['Throw-in'] == False)]
+
+conteo_agrupado = pases_validos.groupby(
+    ['matchId', 'player_id', 'player_name', 'team_id']
+).size().reset_index(name='TotalOPPases')
+
+pases_exitosos = pases_validos[pases_validos['outcome'] == True]
+conteo_exitosos = pases_exitosos.groupby(
+    ['matchId', 'player_id', 'player_name', 'team_id']
+).size().reset_index(name='PasesExitosos')
+
+conteo_cross = pases[pases['Cross'] == True].groupby(
+    ['matchId', 'player_id', 'player_name', 'team_id']
+)['Cross'].count().reset_index(name='TotalCrosses')
+
+conteo_throwin = pases[pases['Throw-in'] == True].groupby(
+    ['matchId', 'player_id', 'player_name', 'team_id']
+)['Throw-in'].count().reset_index(name='Throw-in')
+
+# Unir todos los conteos en un solo DataFrame
+resultado = conteo_agrupado.merge(conteo_exitosos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+resultado = resultado.merge(conteo_cross, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+resultado = resultado.merge(conteo_throwin, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+
+# Completar NaNs
+resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos']] = resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos']].fillna(0).astype(int)
+
+# Mostrar resultado parcial
+#st.write(resultado)
+#st.divider()
+
+# --- BLOQUE 2: Cálculo de pases recibidos excluyendo Throw-in ---
+df = df_backup.copy()
+df['Throw-in'] = df['Throw-in'].fillna(False)
+
+pases_exitosos = df[(df['Event'] == 'Successful Passes') & (df['Throw-in'] == False)].copy()
+
+pases_recibidos = pases_exitosos.groupby(['matchId', 'NextPlayer']).size().reset_index(name='PasesRecibidos')
+
+jugadores = df[['matchId', 'player_name', 'player_id', 'team_id']].drop_duplicates()
+
+resultado_recibidos = jugadores.merge(
+    pases_recibidos,
+    left_on=['matchId', 'player_name'],
+    right_on=['matchId', 'NextPlayer'],
+    how='left'
+)
+
+resultado_recibidos['PasesRecibidos'] = resultado_recibidos['PasesRecibidos'].fillna(0).astype(int)
+
+resultado_recibidos = resultado_recibidos[['matchId', 'player_id', 'player_name', 'team_id', 'PasesRecibidos']]
+
+# --- BLOQUE 3: Unión final de todo ---
+resultado_total = resultado.merge(
+    resultado_recibidos,
+    on=['matchId', 'player_id', 'player_name', 'team_id'],
+    how='left'
+)
+
+resultado_total['PasesRecibidos'] = resultado_total['PasesRecibidos'].fillna(0).astype(int)
+
+st.write(resultado_total)
+st.divider()
+
