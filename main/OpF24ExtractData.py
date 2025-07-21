@@ -420,3 +420,6 @@ st.divider()
 
 df = df_backup
 st.dataframe(df)
+
+
+shots_eventos = ['Shot On Target', 'Shot Off Target', 'Goal']
