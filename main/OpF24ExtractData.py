@@ -57,7 +57,7 @@ with st.form(key='form4'):
 if uploaded_file is not None:
     df = pd.read_csv(uploaded_file, sep=';')
 else:
-    df = pd.read_csv('Data/undefined_undefined_events.csv')
+    df = pd.read_csv('Data/undefined_undefined_events.csv', sep=';')
 
 st.write(df)
 
