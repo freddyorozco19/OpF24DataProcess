@@ -276,6 +276,8 @@ df = df[['matchday', 'matchId', 'team_id', 'player_id', 'player_name', 'Event', 
 st.dataframe(df)
 st.divider()
 
+st.subheader('Duels')
+
 duelo_eventos = ['Challenge', 'Foul', 'Aerial', 'Take On', 'Tackle', 'Dispossessed']
 def contar_eventos(grupo):
     # Filtrar duelos
