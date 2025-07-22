@@ -59,6 +59,8 @@ if uploaded_file is not None:
 else:
     df = pd.read_csv('Data/undefined_undefined_events.csv')
 
+st.write(df)
+
 df = df.iloc[6:].reset_index(drop=True)
 df = df.drop(columns=['timestamp', 'date'])
 
