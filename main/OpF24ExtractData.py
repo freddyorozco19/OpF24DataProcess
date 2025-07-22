@@ -127,7 +127,6 @@ df.loc[(df["type_id"] == "Deleted Event"), "Event"] = "Deleted Event"
 
 
 
-
 df['qualifiers2'] = df['qualifiers'].apply(reparar_y_extraer)
 df['Handball'] = df['qualifiers2'].str.contains(r'\b10:null\b')
 df['Overrun'] = df['qualifiers2'].str.contains(r'\b211:null\b')
@@ -356,6 +355,7 @@ df_resultado.insert(6, 'Duelos %', round(((df_resultado['Duelos W'] / df_resulta
 st.dataframe(df_resultado)
 st.divider()
 
+st.subheader('Passes')
 # --- BLOQUE 1: Cálculo de estadísticas de pase ---
 df = df_backup.copy()
 
