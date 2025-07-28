@@ -294,29 +294,23 @@ def contar_eventos(grupo):
         ((duelos['type_id'] == 'Aerial') & (duelos['outcome'] == True)) |
         ((duelos['type_id'] == 'Take On') & (duelos['outcome'] == True)) |
         (duelos['type_id'] == 'Tackle')]
-
     duelos_f = duelos[
         ((duelos['type_id'] == 'Foul') & (duelos['outcome'] == False)) |
         (duelos['type_id'] == 'Aerial') & (duelos['outcome'] == False) |
         (duelos['type_id'] == 'Take On') & (duelos['outcome'] == False) |
         (duelos['type_id'] == 'Dispossessed') | (duelos['type_id'] == 'Challenge')
     ].shape[0]
-
     duelos_f_df = duelos[
         ((duelos['type_id'] == 'Foul') & (duelos['outcome'] == False)) |
         (duelos['type_id'] == 'Aerial') & (duelos['outcome'] == False) |
         (duelos['type_id'] == 'Take On') & (duelos['outcome'] == False) |
         (duelos['type_id'] == 'Dispossessed') | (duelos['type_id'] == 'Challenge')]
-    
     total_duelos_ofensivos = duelos[duelos['DuelosOfensivos'] == True].shape[0]
     total_duelos_defensivos = duelos[duelos['DuelosDefensivos'] == True].shape[0]
-
     duelos_of_w = duelos_w_df[duelos_w_df['DuelosOfensivos'] == True].shape[0]
     duelos_of_f = duelos_f_df[duelos_f_df['DuelosOfensivos'] == True].shape[0]
-
     duelos_def_w = duelos_w_df[duelos_w_df['DuelosDefensivos'] == True].shape[0]
     duelos_def_f = duelos_f_df[duelos_f_df['DuelosDefensivos'] == True].shape[0]
-
     duelo_ground = ['Challenge', 'Foul', 'Take On', 'Tackle', 'Dispossessed']
     # Filtrar duelos de tipo ground
     duelos_ground_df = duelos[(duelos['type_id'].isin(duelo_ground)) & ~((duelos['type_id'] == 'Foul') & (duelos['AerialFoul'] == True))]
@@ -389,7 +383,6 @@ df = df_backup.copy()
 df['Throw-in'] = df['Throw-in'].fillna(False)
 
 pases_exitosos = df[(df['Event'] == 'Successful Passes') & (df['Throw-in'] == False)].copy()
-
 pases_recibidos = pases_exitosos.groupby(['matchId', 'NextPlayer']).size().reset_index(name='PasesRecibidos')
 
 jugadores = df[['matchId', 'player_name', 'player_id', 'team_id']].drop_duplicates()
@@ -402,7 +395,6 @@ resultado_recibidos = jugadores.merge(
 )
 
 resultado_recibidos['PasesRecibidos'] = resultado_recibidos['PasesRecibidos'].fillna(0).astype(int)
-
 resultado_recibidos = resultado_recibidos[['matchId', 'player_id', 'player_name', 'team_id', 'PasesRecibidos']]
 
 # --- BLOQUE 3: Unión final de todo ---
