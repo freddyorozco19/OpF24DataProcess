@@ -2,7 +2,7 @@ compress_pickle
 hydralit
 hydralit_components
 streamlit
-numpy >=1.20
+numpy >= 1.20
 hotstepper
 altair
 pandas
