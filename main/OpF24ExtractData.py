@@ -196,7 +196,6 @@ df_backup = df
 ################################################################################################################################################################################################################################################################################################################################################
 #Filtros
 filteropt01, filteropt02, filteropt03, filteropt04, filteropt05, filteropt06 = st.columns(6)
-
 with filteropt01:
     MatchdayList = df['matchday'].drop_duplicates().tolist()
     MatchdayList.insert(0, "All Matchdays")  
@@ -205,8 +204,7 @@ with filteropt01:
     if MatchdaySel == "All Matchdays":
         df = dfbk_filteropt_01
     else:
-        df = df[df['matchday'] == MatchdaySel].reset_index(drop=True)
-        
+        df = df[df['matchday'] == MatchdaySel].reset_index(drop=True)  
 with filteropt02:
     MatchIDList = df['matchId'].drop_duplicates().tolist()
     MatchIDList.insert(0, "All Matches")  
@@ -216,7 +214,6 @@ with filteropt02:
         df = dfbk_filteropt_02
     else:
         df = df[df['matchId'] == MatchIDSel].reset_index(drop=True)
-
 with filteropt03:
     TeamList = df['team_id'].drop_duplicates().tolist()
     TeamList.insert(0, "All Teams")  
@@ -226,7 +223,6 @@ with filteropt03:
         df = dfbk_filteropt_03
     else:
         df = df[df['team_id'] == TeamSel].reset_index(drop=True)
-        
 with filteropt04:
     PlayerList = df['player_id'].drop_duplicates().tolist()
     PlayerList.insert(0, "All Players")  
@@ -236,7 +232,6 @@ with filteropt04:
         df = dfbk_filteropt_04
     else:
         df = df[df['player_id'] == PlayerSel].reset_index(drop=True)
-
 with filteropt05:
     EventList = df['type_id'].drop_duplicates().tolist()
     EventList.insert(0, "All Events")  
@@ -246,7 +241,6 @@ with filteropt05:
         df = dfbk_filteropt_05
     else:
         df = df[df['type_id'] == EventSel].reset_index(drop=True)
-
 with filteropt06:
     OutcomeList = [True, False]
     OutcomeList.insert(0, "All")  
