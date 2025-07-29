@@ -430,6 +430,8 @@ Resultado_Shots = Shots_Conteo.merge(
     how='left'
 )
 
+Resultado_Shots['Total SoT'] = Resultado_Shots['Total SoT'].fillna(0).astype(int)
+
 st.write(Resultado_Shots)
 
 st.divider()
