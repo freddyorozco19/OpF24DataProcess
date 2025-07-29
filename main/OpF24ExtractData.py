@@ -138,6 +138,8 @@ df['DuelosDefensivos'] = df['qualifiers2'].str.contains(r'\b285:null\b')
 df['Cross'] = df['qualifiers2'].str.contains(r'\b2:null\b')
 df['CornerTaken'] = df['qualifiers2'].str.contains(r'\b6:null\b')
 
+df['Blocked'] = df['qualifiers2'].str.contains(r'\b82:null\b')
+
 # Paso 1: Duplicar la columna
 df['qualifiers3'] = df['qualifiers2']
 
