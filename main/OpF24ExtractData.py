@@ -431,6 +431,7 @@ SoffT_Conteo = SoffT_df.groupby(['matchId', 'matchday', 'player_id', 'player_nam
 Resultado_Shots = Shots_Conteo.merge(SoT_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Shots = Resultado_Shots.merge(SoffT_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Shots['Total SoT'] = Resultado_Shots['Total SoT'].fillna(0).astype(int)
+Resultado_Shots['Total SoffT'] = Resultado_Shots['Total SoffT'].fillna(0).astype(int)
 
 st.write(Resultado_Shots)
 
