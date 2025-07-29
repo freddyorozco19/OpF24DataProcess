@@ -424,3 +424,5 @@ Shots_Conteo = shots_eventos.groupby(
 ).size().reset_index(name='TotalShots')
 
 st.write(Shots_Conteo)
+
+st.divider()
