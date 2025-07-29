@@ -420,7 +420,7 @@ st.subheader('SHOTS')
 shots_eventos = ['Shot On Target', 'Shot Off Target', 'Goal']
 shots_df = df[df['type_id'].isin(shots_eventos)]
 Shots_Conteo = shots_df.groupby(
-    ['matchId', 'player_id', 'player_name', 'team_id']
+    ['matchId', 'matchday', 'player_id', 'player_name', 'team_id']
 ).size().reset_index(name='TotalShots')
 
 st.write(Shots_Conteo)
