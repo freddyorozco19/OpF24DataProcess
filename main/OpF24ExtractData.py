@@ -110,6 +110,9 @@ df.loc[(df["type_id"] == "Pass") & (df["outcome"] == True), "Event"] = "Successf
 df.loc[(df["type_id"] == "Pass") & (df["outcome"] == False), "Event"] = "Unsuccessful Passes"
 df.loc[(df["type_id"] == "Offside Pass"), "Event"] = "Offside Pass"
 
+df.loc[(df["type_id"] == "Shot On Target") & (df["Blocked"] == True), "Event"] = "Shot Blocked"
+
+
 df.loc[(df["type_id"] == "Clearance"), "Event"] = "Clearance"
 df.loc[(df["type_id"] == "Interception"), "Event"] = "Interception"
 df.loc[(df["type_id"] == "Ball touch"), "Event"] = "Touch"
