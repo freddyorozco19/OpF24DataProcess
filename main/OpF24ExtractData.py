@@ -104,7 +104,17 @@ df['type_id'] = df['type_id'].replace(65, 'Contentious Referee')
 
 #STR 
 #df['player_id'] = df['player_id'].astype(int).astype(str)
+df['qualifiers2'] = df['qualifiers'].apply(reparar_y_extraer)
+df['Handball'] = df['qualifiers2'].str.contains(r'\b10:null\b')
+df['Overrun'] = df['qualifiers2'].str.contains(r'\b211:null\b')
+df['AerialFoul'] = df['qualifiers2'].str.contains(r'\b264:null\b')
+df['Throw-in'] = df['qualifiers2'].str.contains(r'\b107:null\b')
 
+df['DuelosOfensivos'] = df['qualifiers2'].str.contains(r'\b286:null\b')
+df['DuelosDefensivos'] = df['qualifiers2'].str.contains(r'\b285:null\b')
+
+df['Cross'] = df['qualifiers2'].str.contains(r'\b2:null\b')
+df['CornerTaken'] = df['qualifiers2'].str.contains(r'\b6:null\b')
 df['Blocked'] = df['qualifiers2'].str.contains(r'\b82:null\b')
 
 df["Event"] = ""
@@ -131,17 +141,7 @@ df.loc[(df["type_id"] == "Aerial") & (df["outcome"] == False), "Event"] = "Aeria
 df.loc[(df["type_id"] == "Deleted Event"), "Event"] = "Deleted Event"
 
 
-df['qualifiers2'] = df['qualifiers'].apply(reparar_y_extraer)
-df['Handball'] = df['qualifiers2'].str.contains(r'\b10:null\b')
-df['Overrun'] = df['qualifiers2'].str.contains(r'\b211:null\b')
-df['AerialFoul'] = df['qualifiers2'].str.contains(r'\b264:null\b')
-df['Throw-in'] = df['qualifiers2'].str.contains(r'\b107:null\b')
 
-df['DuelosOfensivos'] = df['qualifiers2'].str.contains(r'\b286:null\b')
-df['DuelosDefensivos'] = df['qualifiers2'].str.contains(r'\b285:null\b')
-
-df['Cross'] = df['qualifiers2'].str.contains(r'\b2:null\b')
-df['CornerTaken'] = df['qualifiers2'].str.contains(r'\b6:null\b')
 
 
 
