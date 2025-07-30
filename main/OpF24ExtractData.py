@@ -429,10 +429,10 @@ shots_eventos = ['Shot On Target', 'Shot Off Target', 'Goal']
 shots_df = df[df['type_id'].isin(shots_eventos)]
 Shots_Conteo = shots_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalShots')
 
-SoT_df = shots_df[(shots_df['type_id'] == 'Shot On Target')].reset_index(drop=True)
+SoT_df = shots_df[(shots_df['Event'] == 'Shot On Target')].reset_index(drop=True)
 SoT_Conteo = SoT_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='Total SoT')
 
-SoffT_df = shots_df[(shots_df['type_id'] == 'Shot Off Target')].reset_index(drop=True)
+SoffT_df = shots_df[(shots_df['Event'] == 'Shot Off Target')].reset_index(drop=True)
 SoffT_Conteo = SoffT_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='Total SoffT')
 
 
