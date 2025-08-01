@@ -444,3 +444,6 @@ Resultado_Shots['Total SoffT'] = Resultado_Shots['Total SoffT'].fillna(0).astype
 st.write(Resultado_Shots)
 
 st.divider()
+
+st.subheader("DEFENSIVE")
+st.divider()
