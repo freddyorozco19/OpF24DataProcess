@@ -445,5 +445,5 @@ st.write(Resultado_Shots)
 
 st.divider()
 
-st.subheader("DEFENSIVE")
+st.subheader("DEF")
 st.divider()
