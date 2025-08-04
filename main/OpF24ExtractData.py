@@ -435,11 +435,17 @@ SoT_Conteo = SoT_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 
 SoffT_df = shots_df[(shots_df['Event'] == 'Shot Off Target')].reset_index(drop=True)
 SoffT_Conteo = SoffT_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='Total SoffT')
 
+SB_df = shots_df[(shots_df['Event'] == 'Shot Blocked')].reset_index(drop=True)
+SB_Conteo = SB_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='Total SoB')
+
 
 Resultado_Shots = Shots_Conteo.merge(SoT_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Shots = Resultado_Shots.merge(SoffT_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado_Shots = Resultado_Shots.merge(SB_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
+
 Resultado_Shots['Total SoT'] = Resultado_Shots['Total SoT'].fillna(0).astype(int)
 Resultado_Shots['Total SoffT'] = Resultado_Shots['Total SoffT'].fillna(0).astype(int)
+Resultado_Shots['Total SoB'] = Resultado_Shots['Total SoB'].fillna(0).astype(int)
 
 st.write(Resultado_Shots)
 
