@@ -443,7 +443,7 @@ SB_Conteo = SB_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 't
 
 
 Resultado_Shots = Shots_Conteo.merge(SoT_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
-Resultado_Shots = Shots_Conteo.merge(Goal_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado_Shots = Resultado_Shots.merge(Goal_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Shots = Resultado_Shots.merge(SoffT_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Shots = Resultado_Shots.merge(SB_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 
