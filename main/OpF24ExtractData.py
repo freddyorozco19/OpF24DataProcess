@@ -460,5 +460,7 @@ st.divider()
 
 st.subheader("DEF")
 def_eventos = ['Clearance', 'Interception', 'Tackle']
+def_df = df[df['type_id'].isin(def_eventos)]
+def_Conteo = def_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDefActions')
 
 st.divider()
