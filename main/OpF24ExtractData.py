@@ -463,7 +463,7 @@ def_df = df[df['type_id'].isin(def_eventos)]
 def_Conteo = def_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDefActions')
 
 Clearance_df = def_df[(def_df['Event'] == 'Clearance')].reset_index(drop=True)
-Clearance_Conteo = Clearance_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotaClearances')
+Clearance_Conteo = Clearance_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalClearances')
 
 Interception_df = def_df[(def_df['Event'] == 'Interception')].reset_index(drop=True)
 Interception_Conteo = Interceptione_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotaLInterceptions')
