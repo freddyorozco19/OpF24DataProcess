@@ -472,7 +472,7 @@ Resultado_Def = def_Conteo.merge(Clearance_Conteo, on=['matchId', 'matchday', 'p
 Resultado_Def = Resultado_Def.merge(Interception_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 
 Resultado_Def['TotalDefActions'] = Resultado_Def['TotalDefActions'].fillna(0).astype(int)
-Resultado_Def['TotaClearances'] = Resultado_Def['TotalClearances'].fillna(0).astype(int)
+Resultado_Def['TotalClearances'] = Resultado_Def['TotalClearances'].fillna(0).astype(int)
 Resultado_Def['TotalInterceptions'] = Resultado_Def['TotalInterceptions'].fillna(0).astype(int)
 
 st.write(Resultado_Def)
