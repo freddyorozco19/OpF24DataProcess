@@ -463,4 +463,13 @@ def_eventos = ['Clearance', 'Interception', 'Tackle', 'Ball recovery']
 def_df = df[df['type_id'].isin(def_eventos)]
 def_Conteo = def_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDefActions')
 
+Clearance_df = def_df[(def_df['Event'] == 'Clearance')].reset_index(drop=True)
+Clearance_Conteo = Clearance_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotaClearances')
+
+Resultado_Def = def_Conteo.merge(Clearance_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
+
+Resultado_Def['TotalDefActions'] =Resultado_Def['TotalDefActions'].fillna(0).astype(int)
+
+st.write(Resultado_Def)
+
 st.divider()
