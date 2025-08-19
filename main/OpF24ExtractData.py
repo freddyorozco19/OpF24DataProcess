@@ -470,6 +470,8 @@ Resultado_Def = def_Conteo.merge(Clearance_Conteo, on=['matchId', 'matchday', 'p
 
 Resultado_Def['TotalDefActions'] =Resultado_Def['TotalDefActions'].fillna(0).astype(int)
 
+Resultado_Def['TotaClearances'] =Resultado_Def['TotaClearances'].fillna(0).astype(int)
+
 st.write(Resultado_Def)
 
 st.divider()
