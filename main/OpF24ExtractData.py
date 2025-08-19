@@ -468,7 +468,6 @@ Clearance_Conteo = Clearance_df.groupby(['matchId', 'matchday', 'player_id', 'pl
 Resultado_Def = def_Conteo.merge(Clearance_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 
 Resultado_Def['TotalDefActions'] =Resultado_Def['TotalDefActions'].fillna(0).astype(int)
-
 Resultado_Def['TotaClearances'] =Resultado_Def['TotaClearances'].fillna(0).astype(int)
 
 st.write(Resultado_Def)
