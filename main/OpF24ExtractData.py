@@ -478,6 +478,7 @@ Resultado_Def = Resultado_Def.merge(Recoveries_Conteo, on=['matchId', 'matchday'
 Resultado_Def['TotalDefActions'] = Resultado_Def['TotalDefActions'].fillna(0).astype(int)
 Resultado_Def['TotalClearances'] = Resultado_Def['TotalClearances'].fillna(0).astype(int)
 Resultado_Def['TotalInterceptions'] = Resultado_Def['TotalInterceptions'].fillna(0).astype(int)
+Resultado_Def['TotalRecoveries'] = Resultado_Def['TotalRecoveries'].fillna(0).astype(int)
 
 st.write(Resultado_Def)
 
