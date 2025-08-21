@@ -464,21 +464,21 @@ st.subheader("DEFENSIVE")
 df = df_backup.copy()
 st.write(df)
 def_eventos = ['Clearance', 'Interception', 'Tackle', 'Ball recovery']
-def_df = df[df['type_id'].isin(def_eventos)]
-def_Conteo = def_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDefActions')
+defWS_df = df[df['type_id'].isin(def_eventos)]
+def_Conteo = defWS_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDefActions')
 
-Clearance_df = def_df[(def_df['Event'] == 'Clearance')].reset_index(drop=True)
+Clearance_df = defWS_df[(defWS_df['Event'] == 'Clearance')].reset_index(drop=True)
 Clearance_Conteo = Clearance_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalClearances')
 
-Interception_df = def_df[(def_df['Event'] == 'Interception')].reset_index(drop=True)
+Interception_df = defWS_df[(defWS_df['Event'] == 'Interception')].reset_index(drop=True)
 Interception_Conteo = Interception_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalInterceptions')
 
-Recoveries_df = def_df[(def_df['type_id'] == 'Ball recovery')].reset_index(drop=True)
+Recoveries_df = defWS_df[(defWS_df['type_id'] == 'Ball recovery')].reset_index(drop=True)
 Recoveries_Conteo = Recoveries_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalRecoveries')
 
 #DefBlocks_df = def_df[(def_df['type_id'] == 'Save') & (def_df['DefBlock'] == True)].reset_index(drop=True)
-st.write(def_df)
-DefBlocks_df = def_df[(def_df['DefBlock'] == True)].reset_index(drop=True)
+st.write(defWS_df)
+DefBlocks_df = defWS_df[(defWS_df['DefBlock'] == True)].reset_index(drop=True)
 st.write(DefBlocks_df)
 DefBlocks_Conteo = DefBlocks_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDefBlocks')
 
