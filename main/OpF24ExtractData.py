@@ -510,3 +510,7 @@ dribbles_Conteo = dribbles_df.groupby(['matchId', 'matchday', 'player_id', 'play
 st.write(dribbles_Conteo)
 
 st.divider()
+
+st.subheader("FOULS")
+
+st.divider()
