@@ -509,6 +509,6 @@ st.write(Resultado_Def)
 
 st.divider()
 
-st.write("DRIBBLES")
+st.subheader("DRIBBLES")
 
 st.divider()
