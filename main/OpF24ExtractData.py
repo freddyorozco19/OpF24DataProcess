@@ -105,6 +105,7 @@ df['type_id'] = df['type_id'].replace(65, 'Contentious Referee')
 #STR 
 #df['player_id'] = df['player_id'].astype(int).astype(str)
 df['qualifiers2'] = df['qualifiers'].apply(reparar_y_extraer)
+df['Assists'] = df['qualifiers2'].str.contains(r'\bAssist:\b')
 df['Handball'] = df['qualifiers2'].str.contains(r'\b10:null\b')
 df['Overrun'] = df['qualifiers2'].str.contains(r'\b211:null\b')
 df['AerialFoul'] = df['qualifiers2'].str.contains(r'\b264:null\b')
@@ -118,6 +119,8 @@ df['CornerTaken'] = df['qualifiers2'].str.contains(r'\b6:null\b')
 df['Blocked'] = df['qualifiers2'].str.contains(r'\b82:null\b')
 
 df['DefBlock'] = df['qualifiers2'].str.contains(r'\b94:null\b')
+
+
 
 df["Event"] = ""
 df.loc[(df["type_id"] == "Pass") & (df["outcome"] == True), "Event"] = "Successful Passes"
