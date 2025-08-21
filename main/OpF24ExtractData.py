@@ -493,6 +493,7 @@ Resultado_Def = Resultado_Def.merge(Recoveries_Conteo, on=['matchId', 'matchday'
 Resultado_Def = Resultado_Def.merge(DefBlocks_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Def = Resultado_Def.merge(Tackles_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Def = Resultado_Def.merge(TackleWon_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado_Def = Resultado_Def.merge(TackleLost_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 
 
 Resultado_Def['TotalDefActions'] = Resultado_Def['TotalDefActions'].fillna(0).astype(int)
