@@ -105,7 +105,7 @@ df['type_id'] = df['type_id'].replace(65, 'Contentious Referee')
 #STR 
 #df['player_id'] = df['player_id'].astype(int).astype(str)
 df['qualifiers2'] = df['qualifiers'].apply(reparar_y_extraer)
-df['Assists'] = df['qualifiers2'].str.contains(r'\bAssist:\b')
+df['Assist'] = df['qualifiers2'].str.contains(r'\bAssist:\b')
 df['Handball'] = df['qualifiers2'].str.contains(r'\b10:null\b')
 df['Overrun'] = df['qualifiers2'].str.contains(r'\b211:null\b')
 df['AerialFoul'] = df['qualifiers2'].str.contains(r'\b264:null\b')
@@ -275,7 +275,7 @@ with filteropt01:
         df = dfbk_filteropt_11
     else:
         df = df[df['NextPlayer'] == NextPlayerSel].reset_index(drop=True)
-df = df[['matchday', 'matchId', 'team_id', 'player_id', 'player_name', 'Event', 'type_id', 'outcome', 'LastEvent', 'NextEvent', 'NextPlayer', 'min', 'sec', 'x', 'y', 'x2', 'y2', 'qualifiers', 'qualifiers2', 'qualifiers3', 'Cross', 'CornerTaken', 'Throw-in', 'Handball', 'Overrun', 'AerialFoul', 'DuelosOfensivos', 'DuelosDefensivos', 'Blocked', 'DefBlock']]
+df = df[['matchday', 'matchId', 'team_id', 'player_id', 'player_name', 'Event', 'type_id', 'outcome', 'LastEvent', 'NextEvent', 'NextPlayer', 'min', 'sec', 'x', 'y', 'x2', 'y2', 'qualifiers', 'qualifiers2', 'qualifiers3', 'Cross', 'CornerTaken', 'Throw-in', 'Assist', 'Handball', 'Overrun', 'AerialFoul', 'DuelosOfensivos', 'DuelosDefensivos', 'Blocked', 'DefBlock']]
 
 ################################################################################################################################################################################################################################################################################################################################################
 
