@@ -509,4 +509,6 @@ st.write(Resultado_Def)
 
 st.divider()
 
-st.write("t")
+st.write("DRIBBLES")
+
+st.divider()
