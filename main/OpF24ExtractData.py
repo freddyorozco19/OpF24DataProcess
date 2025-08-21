@@ -481,11 +481,15 @@ DefBlocks_Conteo = DefBlocks_df.groupby(['matchId', 'matchday', 'player_id', 'pl
 Tackles_df = defWS_df[(defWS_df['type_id'] == 'Tackle')].reset_index(drop=True)
 Tackles_Conteo = Tackles_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalTackles')
 
+TackleWon_df = defWS_df[(defWS_df['Event'] == 'Tackle Won')].reset_index(drop=True)
+TackleWon_Conteo = TackleWon_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TacklesWon')
+
 Resultado_Def = def_Conteo.merge(Clearance_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Def = Resultado_Def.merge(Interception_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Def = Resultado_Def.merge(Recoveries_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Def = Resultado_Def.merge(DefBlocks_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Def = Resultado_Def.merge(Tackles_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado_Def = Resultado_Def.merge(TackleWon_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 
 
 Resultado_Def['TotalDefActions'] = Resultado_Def['TotalDefActions'].fillna(0).astype(int)
