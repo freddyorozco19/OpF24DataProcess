@@ -362,9 +362,7 @@ df = df_backup.copy()
 pases = df[df['type_id'] == 'Pass'].copy()
 pases_validos = pases[(pases['Cross'] == False) & (pases['Throw-in'] == False)]
 
-conteo_agrupado = pases_validos.groupby(
-    ['matchId', 'player_id', 'player_name', 'team_id']
-).size().reset_index(name='TotalOPPases')
+conteo_agrupado = pases_validos.groupby(['matchId', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalOPPases')
 
 pases_exitosos = pases_validos[pases_validos['outcome'] == True]
 conteo_exitosos = pases_exitosos.groupby(
