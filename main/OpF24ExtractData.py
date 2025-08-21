@@ -501,4 +501,12 @@ st.divider()
 
 st.subheader("DRIBBLES")
 
+df = df_backup.copy()
+
+dribbles_eventos = ['Take On']
+dribbles_df = df[df['type_id'].isin(dribbles_eventos)]
+dribbles_Conteo = dribbles_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDribbles')
+
+st.write(dribbles_Conteo)
+
 st.divider()
