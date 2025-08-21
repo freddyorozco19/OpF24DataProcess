@@ -365,17 +365,11 @@ pases_validos = pases[(pases['Cross'] == False) & (pases['Throw-in'] == False)]
 conteo_agrupado = pases_validos.groupby(['matchId', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalOPPases')
 
 pases_exitosos = pases_validos[pases_validos['outcome'] == True]
-conteo_exitosos = pases_exitosos.groupby(
-    ['matchId', 'player_id', 'player_name', 'team_id']
-).size().reset_index(name='PasesExitosos')
+conteo_exitosos = pases_exitosos.groupby(['matchId', 'player_id', 'player_name', 'team_id']).size().reset_index(name='PasesExitosos')
 
-conteo_cross = pases[pases['Cross'] == True].groupby(
-    ['matchId', 'player_id', 'player_name', 'team_id']
-)['Cross'].count().reset_index(name='TotalCrosses')
+conteo_cross = pases[pases['Cross'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Cross'].count().reset_index(name='TotalCrosses')
 
-conteo_throwin = pases[pases['Throw-in'] == True].groupby(
-    ['matchId', 'player_id', 'player_name', 'team_id']
-)['Throw-in'].count().reset_index(name='Throw-in')
+conteo_throwin = pases[pases['Throw-in'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Throw-in'].count().reset_index(name='Throw-in')
 
 # Unir todos los conteos en un solo DataFrame
 resultado = conteo_agrupado.merge(conteo_exitosos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
@@ -384,10 +378,6 @@ resultado = resultado.merge(conteo_throwin, on=['matchId', 'player_id', 'player_
 
 # Completar NaNs
 resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos']] = resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos']].fillna(0).astype(int)
-
-# Mostrar resultado parcial
-#st.write(resultado)
-#st.divider()
 
 # --- BLOQUE 2: Cálculo de pases recibidos excluyendo Throw-in ---
 df = df_backup.copy()
