@@ -272,7 +272,7 @@ with filteropt01:
         df = dfbk_filteropt_11
     else:
         df = df[df['NextPlayer'] == NextPlayerSel].reset_index(drop=True)
-df = df[['matchday', 'matchId', 'team_id', 'player_id', 'player_name', 'Event', 'type_id', 'outcome', 'LastEvent', 'NextEvent', 'NextPlayer', 'min', 'sec', 'x', 'y', 'x2', 'y2', 'qualifiers', 'qualifiers2', 'qualifiers3', 'Cross', 'CornerTaken', 'Throw-in', 'Handball', 'Overrun', 'AerialFoul', 'DuelosOfensivos', 'DuelosDefensivos', 'Blocked']]
+df = df[['matchday', 'matchId', 'team_id', 'player_id', 'player_name', 'Event', 'type_id', 'outcome', 'LastEvent', 'NextEvent', 'NextPlayer', 'min', 'sec', 'x', 'y', 'x2', 'y2', 'qualifiers', 'qualifiers2', 'qualifiers3', 'Cross', 'CornerTaken', 'Throw-in', 'Handball', 'Overrun', 'AerialFoul', 'DuelosOfensivos', 'DuelosDefensivos', 'Blocked', 'DefBlock']]
 
 ################################################################################################################################################################################################################################################################################################################################################
 
