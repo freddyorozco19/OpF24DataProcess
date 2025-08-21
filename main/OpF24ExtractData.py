@@ -474,6 +474,9 @@ Interception_Conteo = Interception_df.groupby(['matchId', 'matchday', 'player_id
 Recoveries_df = def_df[(def_df['type_id'] == 'Ball recovery')].reset_index(drop=True)
 Recoveries_Conteo = Recoveries_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalRecoveries')
 
+DefBlocks_df = def_df[(def_df['type_id'] == 'Save') & (def_df['DefBlock'] == True)].reset_index(drop=True)
+DefBlocks_Conteo = DefBlocks_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDefBlocks')
+
 Resultado_Def = def_Conteo.merge(Clearance_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Def = Resultado_Def.merge(Interception_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Def = Resultado_Def.merge(Recoveries_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
