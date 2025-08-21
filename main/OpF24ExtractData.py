@@ -105,7 +105,7 @@ df['type_id'] = df['type_id'].replace(65, 'Contentious Referee')
 #STR 
 #df['player_id'] = df['player_id'].astype(int).astype(str)
 df['qualifiers2'] = df['qualifiers'].apply(reparar_y_extraer)
-df['Assist'] = df['qualifiers2'].str.contains(r'\bAssist:\b')
+df['Assist'] = df['qualifiers2'].str.contains(r'\b210:\b')
 df['Handball'] = df['qualifiers2'].str.contains(r'\b10:null\b')
 df['Overrun'] = df['qualifiers2'].str.contains(r'\b211:null\b')
 df['AerialFoul'] = df['qualifiers2'].str.contains(r'\b264:null\b')
@@ -173,7 +173,7 @@ replacements = {
     '157': 'Launch',
     '189': 'PlayerNotVisible',
     '199': 'KickHands',
-    '210': 'Assist',
+    #'210': 'Assist',
     '212': 'Length',
     '213': 'Angle',
     '223': 'In-Swinger',
