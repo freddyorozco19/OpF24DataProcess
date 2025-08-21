@@ -462,7 +462,6 @@ st.divider()
 
 st.subheader("DEFENSIVE")
 df = df_backup.copy()
-st.write(df)
 def_eventos = ['Clearance', 'Interception', 'Tackle', 'Ball recovery']
 def_df = df[df['type_id'].isin(def_eventos)]
 def_Conteo = def_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDefActions')
@@ -477,6 +476,7 @@ Recoveries_df = def_df[(def_df['type_id'] == 'Ball recovery')].reset_index(drop=
 Recoveries_Conteo = Recoveries_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalRecoveries')
 
 #DefBlocks_df = def_df[(def_df['type_id'] == 'Save') & (def_df['DefBlock'] == True)].reset_index(drop=True)
+st.write(def_df)
 DefBlocks_df = def_df[(def_df['DefBlock'] == True)].reset_index(drop=True)
 st.write(DefBlocks_df)
 DefBlocks_Conteo = DefBlocks_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDefBlocks')
