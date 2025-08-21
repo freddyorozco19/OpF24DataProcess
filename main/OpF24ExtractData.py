@@ -484,6 +484,9 @@ Tackles_Conteo = Tackles_df.groupby(['matchId', 'matchday', 'player_id', 'player
 TackleWon_df = defWS_df[(defWS_df['Event'] == 'Tackle Won')].reset_index(drop=True)
 TackleWon_Conteo = TackleWon_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TacklesWon')
 
+TackleLost_df = defWS_df[(defWS_df['Event'] == 'Tackle Lost')].reset_index(drop=True)
+TackleLost_Conteo = TackleLost_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TacklesLost')
+
 Resultado_Def = def_Conteo.merge(Clearance_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Def = Resultado_Def.merge(Interception_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado_Def = Resultado_Def.merge(Recoveries_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
