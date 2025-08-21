@@ -476,9 +476,8 @@ Interception_Conteo = Interception_df.groupby(['matchId', 'matchday', 'player_id
 Recoveries_df = defWS_df[(defWS_df['type_id'] == 'Ball recovery')].reset_index(drop=True)
 Recoveries_Conteo = Recoveries_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalRecoveries')
 
-#DefBlocks_df = def_df[(def_df['type_id'] == 'Save') & (def_df['DefBlock'] == True)].reset_index(drop=True)
-
-DefBlocks_df = defWS_df[(defWS_df['DefBlock'] == True)].reset_index(drop=True)
+DefBlocks_df = defWS_df[(defWS_df['type_id'] == 'Save') & (def_df['DefBlock'] == True)].reset_index(drop=True)
+#DefBlocks_df = defWS_df[(defWS_df['DefBlock'] == True)].reset_index(drop=True)
 st.write(DefBlocks_df)
 DefBlocks_Conteo = DefBlocks_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDefBlocks')
 
