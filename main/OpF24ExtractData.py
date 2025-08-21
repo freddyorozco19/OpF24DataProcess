@@ -463,7 +463,7 @@ st.divider()
 st.subheader("DEFENSIVE")
 df = df_backup.copy()
 st.write(df)
-def_eventos = ['Clearance', 'Interception', 'Tackle', 'Ball recovery']
+def_eventos = ['Clearance', 'Interception', 'Tackle', 'Ball recovery', 'Save']
 defWS_df = df[df['type_id'].isin(def_eventos)]
 def_Conteo = defWS_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDefActions')
 
