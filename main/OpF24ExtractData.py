@@ -117,6 +117,8 @@ df['Cross'] = df['qualifiers2'].str.contains(r'\b2:null\b')
 df['CornerTaken'] = df['qualifiers2'].str.contains(r'\b6:null\b')
 df['Blocked'] = df['qualifiers2'].str.contains(r'\b82:null\b')
 
+df['DefBlock'] = df['qualifiers2'].str.contains(r'\b94:null\b')
+
 df["Event"] = ""
 df.loc[(df["type_id"] == "Pass") & (df["outcome"] == True), "Event"] = "Successful Passes"
 df.loc[(df["type_id"] == "Pass") & (df["outcome"] == False), "Event"] = "Unsuccessful Passes"
