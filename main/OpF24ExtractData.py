@@ -503,6 +503,7 @@ Resultado_Def['TotalRecoveries'] = Resultado_Def['TotalRecoveries'].fillna(0).as
 Resultado_Def['TotalDefBlocks'] = Resultado_Def['TotalDefBlocks'].fillna(0).astype(int)
 Resultado_Def['TotalTackles'] = Resultado_Def['TotalTackles'].fillna(0).astype(int)
 Resultado_Def['TacklesWon'] = Resultado_Def['TacklesWon'].fillna(0).astype(int)
+Resultado_Def['TacklesLost'] = Resultado_Def['TacklesLost'].fillna(0).astype(int)
 
 st.write(Resultado_Def)
 
