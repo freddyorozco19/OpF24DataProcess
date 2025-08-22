@@ -514,6 +514,9 @@ DribblesW_Conteo = DribblesW_df.groupby(['matchId', 'matchday', 'player_id', 'pl
 
 Resultado_Dribbles = Dribbles_Conteo.merge(DribblesW_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 
+Resultado_Dribbles['TotalDribbles'] = Resultado_Dribbles['TotalDribbles'].fillna(0).astype(int)
+Resultado_Dribbles['DribblesW'] = Resultado_Dribbles['DribblesW'].fillna(0).astype(int)
+
 st.write(Resultado_Dribbles)
 
 st.divider()
