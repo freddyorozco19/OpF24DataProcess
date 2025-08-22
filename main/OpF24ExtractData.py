@@ -379,8 +379,8 @@ Conteo_Throwin = pases[pases['Throw-in'] == True].groupby(['matchId', 'player_id
 
 # Unir todos los conteos en un solo DataFrame
 resultado = conteo_agrupado.merge(conteo_exitosos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
-resultado = resultado.merge(Conteo_cross, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
-resultado = resultado.merge(Conteo_throwin, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+resultado = resultado.merge(Conteo_Cross, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+resultado = resultado.merge(Conteo_Throwin, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 
 # Completar NaNs
 resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos']] = resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos']].fillna(0).astype(int)
