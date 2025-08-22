@@ -376,6 +376,7 @@ Conteo_Exitosos = pases_exitosos.groupby(['matchId', 'player_id', 'player_name',
 Conteo_Cross = pases[pases['Cross'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Cross'].count().reset_index(name='TotalCrosses')
 Conteo_Throwin = pases[pases['Throw-in'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Throw-in'].count().reset_index(name='Throw-in')
 Conteo_Assist = pases[pases['Assist'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Assist'].count().reset_index(name='TotalAssist')
+Conteo_KeyPass = pases[pases['KeyPass'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['KeyPass'].count().reset_index(name='TotalKeyPass')
 
 # Unir todos los conteos en un solo DataFrame
 Resultado = conteo_agrupado.merge(Conteo_Exitosos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
@@ -384,7 +385,7 @@ Resultado = Resultado.merge(Conteo_Throwin, on=['matchId', 'player_id', 'player_
 Resultado = Resultado.merge(Conteo_Assist, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 
 # Completar NaNs
-Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist']] = Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist']].fillna(0).astype(int)
+Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist', 'TotalKeyPass']] = Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist', 'TotalKeyPass']].fillna(0).astype(int)
 
 # --- BLOQUE 2: Cálculo de pases recibidos excluyendo Throw-in ---
 df = df_backup.copy()
