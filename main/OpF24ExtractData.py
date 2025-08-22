@@ -371,12 +371,10 @@ pases_validos = pases[(pases['Cross'] == False) & (pases['Throw-in'] == False)]
 conteo_agrupado = pases_validos.groupby(['matchId', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalOPPases')
 
 pases_exitosos = pases_validos[pases_validos['outcome'] == True]
+
 Conteo_Exitosos = pases_exitosos.groupby(['matchId', 'player_id', 'player_name', 'team_id']).size().reset_index(name='PasesExitosos')
-
 Conteo_Cross = pases[pases['Cross'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Cross'].count().reset_index(name='TotalCrosses')
-
 Conteo_Throwin = pases[pases['Throw-in'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Throw-in'].count().reset_index(name='Throw-in')
-
 Conteo_Assist = pases[pases['Assist'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Assist'].count().reset_index(name='TotalAssist')
 
 # Unir todos los conteos en un solo DataFrame
