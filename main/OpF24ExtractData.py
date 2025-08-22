@@ -539,9 +539,14 @@ Fouls_Conteo = Fouls_df.groupby(['matchId', 'matchday', 'player_id', 'player_nam
 FoulsW_df = Fouls_df[(Fouls_df['Event'] == 'Foul Won')].reset_index(drop=True)
 FoulsW_Conteo = FoulsW_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='FoulsW')
 
+FoulsF_df = Fouls_df[(Fouls_df['Event'] == 'Foul Lost')].reset_index(drop=True)
+FoulsF_Conteo = FoulsF_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='FoulsF')
+
 Resultado_Fouls = Fouls_Conteo.merge(FoulsW_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado_Fouls = Resultado_Fouls.merge(FoulsF_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 
 Resultado_Fouls['FoulsW'] = Resultado_Fouls['FoulsW'].fillna(0).astype(int)
+Resultado_Fouls['FoulsF'] = Resultado_Fouls['FoulsF'].fillna(0).astype(int)
 
 st.write(Resultado_Fouls)
 
