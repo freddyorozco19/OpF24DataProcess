@@ -541,6 +541,8 @@ FoulsW_Conteo = FoulsW_df.groupby(['matchId', 'matchday', 'player_id', 'player_n
 
 Resultado_Fouls = Fouls_Conteo.merge(FoulsW_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 
+Resultado_Fouls['FoulsW'] = Resultado_Fouls['FoulsW'].fillna(0).astype(int)
+
 st.write(Resultado_Fouls)
 
 st.divider()
