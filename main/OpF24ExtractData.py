@@ -368,7 +368,7 @@ df = df_backup.copy()
 pases = df[df['type_id'] == 'Pass'].copy()
 pases_validos = pases[(pases['Cross'] == False) & (pases['Throw-in'] == False)]
 
-conteo_agrupado = pases_validos.groupby(['matchId', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalOPPases')
+Conteo_Agrupado = pases_validos.groupby(['matchId', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalOPPases')
 
 pases_exitosos = pases_validos[pases_validos['outcome'] == True]
 
@@ -379,7 +379,7 @@ Conteo_Assist = pases[pases['Assist'] == True].groupby(['matchId', 'player_id', 
 Conteo_KeyPass = pases[pases['KeyPass'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['KeyPass'].count().reset_index(name='TotalKeyPass')
 
 # Unir todos los conteos en un solo DataFrame
-Resultado = conteo_agrupado.merge(Conteo_Exitosos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado = Conteo_Agrupado.merge(Conteo_Exitosos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado = Resultado.merge(Conteo_Cross, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado = Resultado.merge(Conteo_Throwin, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado = Resultado.merge(Conteo_Assist, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
