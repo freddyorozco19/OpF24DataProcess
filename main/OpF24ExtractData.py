@@ -377,6 +377,8 @@ Conteo_Cross = pases[pases['Cross'] == True].groupby(['matchId', 'player_id', 'p
 
 Conteo_Throwin = pases[pases['Throw-in'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Throw-in'].count().reset_index(name='Throw-in')
 
+Conteo_Assist = pases[pases['Assist'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Assist'].count().reset_index(name='TotalAssist')
+
 # Unir todos los conteos en un solo DataFrame
 resultado = conteo_agrupado.merge(Conteo_Exitosos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 resultado = resultado.merge(Conteo_Cross, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
