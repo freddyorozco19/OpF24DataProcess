@@ -383,6 +383,7 @@ Conteo_Assist = pases[pases['Assist'] == True].groupby(['matchId', 'player_id', 
 resultado = conteo_agrupado.merge(Conteo_Exitosos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 resultado = resultado.merge(Conteo_Cross, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 resultado = resultado.merge(Conteo_Throwin, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+resultado = resultado.merge(Conteo_Assist, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 
 # Completar NaNs
 resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist']] = resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist']].fillna(0).astype(int)
