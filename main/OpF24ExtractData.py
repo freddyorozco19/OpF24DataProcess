@@ -536,4 +536,7 @@ Fouls_eventos = ['Foul Won', 'Foul Lost']
 Fouls_df = df[df['type_id'].isin(Fouls_eventos)]
 Fouls_Conteo = Fouls_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalFouls')
 
+FoulsW_df = Fouls_df[(Fouls_df['outcome'] == True)].reset_index(drop=True)
+FoulsW_Conteo = FoulsW_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='FoulsW')
+
 st.divider()
