@@ -394,22 +394,13 @@ pases_recibidos = pases_exitosos.groupby(['matchId', 'NextPlayer']).size().reset
 
 jugadores = df[['matchId', 'player_name', 'player_id', 'team_id']].drop_duplicates()
 
-resultado_recibidos = jugadores.merge(
-    pases_recibidos,
-    left_on=['matchId', 'player_name'],
-    right_on=['matchId', 'NextPlayer'],
-    how='left'
-)
+resultado_recibidos = jugadores.merge(pases_recibidos, left_on=['matchId', 'player_name'], right_on=['matchId', 'NextPlayer'], how='left')
 
 resultado_recibidos['PasesRecibidos'] = resultado_recibidos['PasesRecibidos'].fillna(0).astype(int)
 resultado_recibidos = resultado_recibidos[['matchId', 'player_id', 'player_name', 'team_id', 'PasesRecibidos']]
 
 # --- BLOQUE 3: Unión final de todo ---
-resultado_total = resultado.merge(
-    resultado_recibidos,
-    on=['matchId', 'player_id', 'player_name', 'team_id'],
-    how='left'
-)
+resultado_total = resultado.merge(resultado_recibidos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 
 resultado_total['PasesRecibidos'] = resultado_total['PasesRecibidos'].fillna(0).astype(int)
 
