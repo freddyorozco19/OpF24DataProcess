@@ -512,7 +512,11 @@ Dribbles_Conteo = Dribbles_df.groupby(['matchId', 'matchday', 'player_id', 'play
 DribblesW_df = Dribbles_df[(Dribbles_df['outcome'] == True)].reset_index(drop=True)
 DribblesW_Conteo = DribblesW_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='DribblesW')
 
+DribblesF_df = Dribbles_df[(Dribbles_df['outcome'] == False)].reset_index(drop=True)
+DribblesF_Conteo = DribblesF_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='DribblesF')
+
 Resultado_Dribbles = Dribbles_Conteo.merge(DribblesW_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado_Dribbles = Resultado_Dribbles.merge(DribblesF_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 
 Resultado_Dribbles['TotalDribbles'] = Resultado_Dribbles['TotalDribbles'].fillna(0).astype(int)
 Resultado_Dribbles['DribblesW'] = Resultado_Dribbles['DribblesW'].fillna(0).astype(int)
