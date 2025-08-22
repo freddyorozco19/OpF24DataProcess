@@ -505,14 +505,14 @@ st.subheader("DRIBBLES")
 
 df = df_backup.copy()
 
-dribbles_eventos = ['Take On']
-dribbles_df = df[df['type_id'].isin(dribbles_eventos)]
-dribbles_Conteo = dribbles_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDribbles')
+Dribbles_eventos = ['Take On']
+Dribbles_df = df[df['type_id'].isin(Dribbles_eventos)]
+Dribbles_Conteo = Dribbles_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDribbles')
 
-dribblesW_df = dribbles_df[(dribbles_df['outcome'] == True)].reset_index(drop=True)
-DribblesW_Conteo = dribblesW_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='DribblesW')
+DribblesW_df = Dribbles_df[(Dribbles_df['outcome'] == True)].reset_index(drop=True)
+DribblesW_Conteo = DribblesW_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='DribblesW')
 
-Resultado_Dribbles = dribbles_Conteo.merge(DribblesW_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado_Dribbles = Dribbles_Conteo.merge(DribblesW_Conteo, on=['matchId', 'matchday', 'player_id', 'player_name', 'team_id'], how='left')
 
 st.write(Resultado_Dribbles)
 
