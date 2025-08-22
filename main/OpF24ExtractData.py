@@ -534,6 +534,6 @@ df = df_backup.copy()
 
 Fouls_eventos = ['Take On']
 Fouls_df = df[df['type_id'].isin(Fouls_eventos)]
-Fouls_Conteo = Fouls_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalDribbles')
+Fouls_Conteo = Fouls_df.groupby(['matchId', 'matchday', 'player_id', 'player_name', 'team_id']).size().reset_index(name='TotalFouls')
 
 st.divider()
