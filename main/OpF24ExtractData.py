@@ -380,13 +380,13 @@ Conteo_Throwin = pases[pases['Throw-in'] == True].groupby(['matchId', 'player_id
 Conteo_Assist = pases[pases['Assist'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Assist'].count().reset_index(name='TotalAssist')
 
 # Unir todos los conteos en un solo DataFrame
-resultado = conteo_agrupado.merge(Conteo_Exitosos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
-resultado = resultado.merge(Conteo_Cross, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
-resultado = resultado.merge(Conteo_Throwin, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
-resultado = resultado.merge(Conteo_Assist, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado = conteo_agrupado.merge(Conteo_Exitosos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado = Resultado.merge(Conteo_Cross, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado = Resultado.merge(Conteo_Throwin, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado = Resultado.merge(Conteo_Assist, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 
 # Completar NaNs
-resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist']] = resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist']].fillna(0).astype(int)
+Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist']] = Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist']].fillna(0).astype(int)
 
 # --- BLOQUE 2: Cálculo de pases recibidos excluyendo Throw-in ---
 df = df_backup.copy()
@@ -403,7 +403,7 @@ resultado_recibidos['PasesRecibidos'] = resultado_recibidos['PasesRecibidos'].fi
 resultado_recibidos = resultado_recibidos[['matchId', 'player_id', 'player_name', 'team_id', 'PasesRecibidos']]
 
 # --- BLOQUE 3: Unión final de todo ---
-resultado_total = resultado.merge(resultado_recibidos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+resultado_total = Resultado.merge(resultado_recibidos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 
 resultado_total['PasesRecibidos'] = resultado_total['PasesRecibidos'].fillna(0).astype(int)
 
