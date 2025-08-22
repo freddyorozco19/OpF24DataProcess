@@ -520,6 +520,7 @@ Resultado_Dribbles = Resultado_Dribbles.merge(DribblesF_Conteo, on=['matchId', '
 
 Resultado_Dribbles['TotalDribbles'] = Resultado_Dribbles['TotalDribbles'].fillna(0).astype(int)
 Resultado_Dribbles['DribblesW'] = Resultado_Dribbles['DribblesW'].fillna(0).astype(int)
+Resultado_Dribbles['DribblesF'] = Resultado_Dribbles['DribblesF'].fillna(0).astype(int)
 
 st.write(Resultado_Dribbles)
 
