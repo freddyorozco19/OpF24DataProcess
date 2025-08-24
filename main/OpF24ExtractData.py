@@ -571,6 +571,6 @@ ax29.annotate('', xy=(2, 6), xytext=(8, 6), arrowprops=dict(arrowstyle='<-', ls=
 ax29.text(5, 2, 'Dirección campo de juego',  c=(1,1,1,0.5), fontsize=10, ha='center')
 pitch.draw(ax=ax)
 
-ax.scatter(df['X1'], df['Y1'], color = "#FF0046", edgecolors='w', s=30, zorder=2, alpha=0.2)
+ax.scatter(df['x'], df['y'], color = "#FF0046", edgecolors='w', s=30, zorder=2, alpha=0.2)
 
 st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
