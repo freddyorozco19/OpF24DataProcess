@@ -568,7 +568,7 @@ ax29.set_xlim(0,10)
 ax29.set_ylim(0,10)
 ax29.annotate('', xy=(2, 6), xytext=(8, 6), arrowprops=dict(arrowstyle='<-', ls= '-', lw = 1, color = (1,1,1,0.5)))
 #ax29.annotate(s='', xy=(2, 5), xytext=(8, 5), arrowprops=dict(arrowstyle='<-', ls= '-', lw = 1, color = (1,1,1,0.5)))
-ax29.text(5, 2, 'Dirección campo de juego', fontproperties=prop3, c=(1,1,1,0.5), fontsize=10, ha='center')
+ax29.text(5, 2, 'Dirección campo de juego',  c=(1,1,1,0.5), fontsize=10, ha='center')
 pitch.draw(ax=ax)
 
 st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
