@@ -556,6 +556,8 @@ st.divider()
 
 st.subheader("VIZ")
 
+df = df.drop(["Out"], axis=1)
+
 fig, ax = mplt.subplots(figsize=(8, 8), dpi = 800)
 ax.axis("off")
 fig.patch.set_visible(False)
