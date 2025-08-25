@@ -64,6 +64,11 @@ st.write(df)
 df = df.iloc[6:].reset_index(drop=True)
 df = df.drop(columns=['timestamp', 'date'])
 
+df["x"] = df["x"] * 105 / 100
+df["x2"] = df["x2"] * 105 / 100
+df["y"] = df["y"] * 68 / 100
+df["y2"] = df["y2"] * 68 / 100
+
 #Replace Type_id values
 df['type_id'] = df['type_id'].replace(1, 'Pass')
 df['type_id'] = df['type_id'].replace(5, 'Out')
@@ -113,6 +118,9 @@ df['Handball'] = df['qualifiers2'].str.contains(r'\b10:null\b')
 df['Overrun'] = df['qualifiers2'].str.contains(r'\b211:null\b')
 df['AerialFoul'] = df['qualifiers2'].str.contains(r'\b264:null\b')
 df['Throw-in'] = df['qualifiers2'].str.contains(r'\b107:null\b')
+
+# INTO FINAL THIRD - PASSES
+df['FinalThirdPass'] = ((df['x'] <= 70) & (df['x2'] >= 70)).astype(int)
 
 df['DuelosOfensivos'] = df['qualifiers2'].str.contains(r'\b286:null\b')
 df['DuelosDefensivos'] = df['qualifiers2'].str.contains(r'\b285:null\b')
@@ -558,10 +566,7 @@ st.subheader("VIZ")
 
 #df = df.drop(["Out"], axis=1)
 df = df[~df['type_id'].isin(['Out'])]
-df["x"] = df["x"] * 105 / 100
-df["x2"] = df["x2"] * 105 / 100
-df["y"] = df["y"] * 68 / 100
-df["y2"] = df["y2"] * 68 / 100
+
 
 fig, ax = mplt.subplots(figsize=(8, 8), dpi = 800)
 ax.axis("off")
