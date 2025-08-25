@@ -558,12 +558,16 @@ st.subheader("VIZ")
 
 #df = df.drop(["Out"], axis=1)
 df = df[~df['type_id'].isin(['Out'])]
+df["x"] = df["x"] * 105 / 100
+df["x2"] = df["x2"] * 105 / 100
+df["y"] = df["y"] * 68 / 100
+df["y2"] = df["y2"] * 68 / 100
 
 fig, ax = mplt.subplots(figsize=(8, 8), dpi = 800)
 ax.axis("off")
 fig.patch.set_visible(False)
 
-pitch = Pitch(pitch_color='None', pitch_type='custom', line_zorder=1, linewidth=1.0, goal_type='box', pitch_length=100, pitch_width=100)
+pitch = Pitch(pitch_color='None', pitch_type='custom', line_zorder=1, linewidth=1.0, goal_type='box', pitch_length=105, pitch_width=68)
 #Adding directon arrow
 ax29 = fig.add_axes([0.368,0.22,0.3,0.05])
 ax29.axis("off")
