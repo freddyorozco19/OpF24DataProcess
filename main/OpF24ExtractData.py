@@ -121,6 +121,21 @@ df['Throw-in'] = df['qualifiers2'].str.contains(r'\b107:null\b')
 
 # INTO FINAL THIRD - PASSES
 df['FinalThirdPass'] = (df['x'] <= 70) & (df['x2'] >= 70)
+# INTO OPPONNENT FIELD - PASSES
+df['OpponnentFieldPass'] = (df['X1'] <= 52.5) & (df['X2'] >= 52.5)
+# INTO PENALTY AREA - PASSES
+condicion1 = ((df['X1'] < 88.5) | (df['Y1'] < 13.84) | (df['X1'] > 105) | (df['Y1'] > 54.16))
+condicion2 = ((df['X2'] >= 88.5) & (df['Y2'] >= 13.84) & (df['X2'] <= 105) & (df['Y2'] <= 54.16))
+df['PenaltyAreaPass'] = condicion1 & condicion2
+# PROGRESSIVE - PASSES
+df['Beginning'] = np.sqrt(np.square(105 - df['X1']) + np.square(34 - df['Y1']))
+df['Ending'] = np.sqrt(np.square(105 - df['X2']) + np.square(34 - df['Y2']))
+df['ProgressPass'] = df['Ending'] / df['Beginning'] <= 0.75
+df = df.drop(['Beginning', 'Ending'], axis=1)
+# LONG - PASSES
+df['Distance'] = np.sqrt((df['X2'] - df['X1'])**2 + (df['Y2'] - df['Y1'])**2)
+df['LongPass'] = df['Distance'] >= 32
+df = df.drop(['Distance'], axis=1)
 
 df['DuelosOfensivos'] = df['qualifiers2'].str.contains(r'\b286:null\b')
 df['DuelosDefensivos'] = df['qualifiers2'].str.contains(r'\b285:null\b')
