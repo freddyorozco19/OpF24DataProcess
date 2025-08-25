@@ -557,7 +557,7 @@ st.divider()
 st.subheader("VIZ")
 
 #df = df.drop(["Out"], axis=1)
-df = df[~df['Event'].isin(['Out'])]
+df = df[~df['type_id'].isin(['Out'])]
 
 fig, ax = mplt.subplots(figsize=(8, 8), dpi = 800)
 ax.axis("off")
