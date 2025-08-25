@@ -47,7 +47,7 @@ def reparar_y_extraer(cadena):
     return ', '.join(resultado)
 
 st.markdown("<style> div { text-align: center } </style>", unsafe_allow_html=True)
-st.subheader('EXTRACT-.-DATA')
+st.subheader('EXTRACTDATA')
 
 
 with st.form(key='form4'):
