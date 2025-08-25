@@ -120,7 +120,7 @@ df['AerialFoul'] = df['qualifiers2'].str.contains(r'\b264:null\b')
 df['Throw-in'] = df['qualifiers2'].str.contains(r'\b107:null\b')
 
 # INTO FINAL THIRD - PASSES
-df['FinalThirdPass'] = ((df['x'] <= 70) & (df['x2'] >= 70)).astype(int)
+df['FinalThirdPass'] = (df['x'] <= 70) & (df['x2'] >= 70)
 
 df['DuelosOfensivos'] = df['qualifiers2'].str.contains(r'\b286:null\b')
 df['DuelosDefensivos'] = df['qualifiers2'].str.contains(r'\b285:null\b')
