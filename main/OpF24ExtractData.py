@@ -574,3 +574,6 @@ pitch.draw(ax=ax)
 ax.scatter(df['x'], df['y'], color = "#FF0046", edgecolors='w', s=30, zorder=2, alpha=0.2)
 
 st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
+
+st.write(df)
+st.divider()
