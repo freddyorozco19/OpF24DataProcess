@@ -410,9 +410,10 @@ Resultado = Resultado.merge(Conteo_Cross, on=['matchId', 'player_id', 'player_na
 Resultado = Resultado.merge(Conteo_Throwin, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado = Resultado.merge(Conteo_Assist, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado = Resultado.merge(Conteo_KeyPass, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado = Resultado.merge(Conteo_FinalThirdPass, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 
 # Completar NaNs
-Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist', 'TotalKeyPass']] = Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist', 'TotalKeyPass']].fillna(0).astype(int)
+Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist', 'TotalKeyPass', 'TotalFinalThirdPass']] = Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist', 'TotalKeyPass', 'TotalFinalThirdPass']].fillna(0).astype(int)
 
 # --- BLOQUE 2: Cálculo de pases recibidos excluyendo Throw-in ---
 df = df_backup.copy()
