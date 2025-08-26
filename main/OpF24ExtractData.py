@@ -402,7 +402,8 @@ Conteo_Cross = pases[pases['Cross'] == True].groupby(['matchId', 'player_id', 'p
 Conteo_Throwin = pases[pases['Throw-in'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Throw-in'].count().reset_index(name='Throw-in')
 Conteo_Assist = pases[pases['Assist'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Assist'].count().reset_index(name='TotalAssist')
 Conteo_KeyPass = pases[pases['KeyPass'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['KeyPass'].count().reset_index(name='TotalKeyPass')
-Conteo_FinalThirdPass = pases[pases['FinalThirdPass'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['KeyPass'].count().reset_index(name='TotalFinalThirdPass')
+Conteo_FinalThirdPass = pases[pases['FinalThirdPass'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['FinalThirdPass'].count().reset_index(name='TotalFinalThirdPass')
+Conteo_OpponnentFieldPass = pases[pases['OpponnentFieldPass'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['OpponnentFieldPass'].count().reset_index(name='TotalOpponnentFieldPass')
 
 # Unir todos los conteos en un solo DataFrame
 Resultado = Conteo_Agrupado.merge(Conteo_Exitosos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
@@ -411,9 +412,10 @@ Resultado = Resultado.merge(Conteo_Throwin, on=['matchId', 'player_id', 'player_
 Resultado = Resultado.merge(Conteo_Assist, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado = Resultado.merge(Conteo_KeyPass, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado = Resultado.merge(Conteo_FinalThirdPass, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado = Resultado.merge(Conteo_OpponnentFieldPass, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 
 # Completar NaNs
-Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist', 'TotalKeyPass', 'TotalFinalThirdPass']] = Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist', 'TotalKeyPass', 'TotalFinalThirdPass']].fillna(0).astype(int)
+Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist', 'TotalKeyPass', 'TotalFinalThirdPass', 'TotalOpponnentFieldPass']] = Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist', 'TotalKeyPass', 'TotalFinalThirdPass', 'TotalOpponnentFieldPass']].fillna(0).astype(int)
 
 # --- BLOQUE 2: Cálculo de pases recibidos excluyendo Throw-in ---
 df = df_backup.copy()
