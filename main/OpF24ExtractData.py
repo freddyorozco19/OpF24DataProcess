@@ -405,6 +405,7 @@ Conteo_KeyPass = pases[pases['KeyPass'] == True].groupby(['matchId', 'player_id'
 Conteo_FinalThirdPass = pases[pases['FinalThirdPass'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['FinalThirdPass'].count().reset_index(name='TotalFinalThirdPass')
 Conteo_OpponnentFieldPass = pases[pases['OpponnentFieldPass'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['OpponnentFieldPass'].count().reset_index(name='TotalOpponnentFieldPass')
 Conteo_PenaltyAreaPass = pases[pases['PenaltyAreaPass'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['PenaltyAreaPass'].count().reset_index(name='TotalPenaltyAreaPass')
+Conteo_ProgressPass = pases[pases['ProgressPass'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['ProgressPass'].count().reset_index(name='TotalProgressPass')
 
 
 # Unir todos los conteos en un solo DataFrame
@@ -416,6 +417,7 @@ Resultado = Resultado.merge(Conteo_KeyPass, on=['matchId', 'player_id', 'player_
 Resultado = Resultado.merge(Conteo_FinalThirdPass, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado = Resultado.merge(Conteo_OpponnentFieldPass, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 Resultado = Resultado.merge(Conteo_PenaltyAreaPass, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
+Resultado = Resultado.merge(Conteo_ProgressPass, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
 
 # Completar NaNs
 Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist', 'TotalKeyPass', 'TotalFinalThirdPass', 'TotalOpponnentFieldPass']] = Resultado[['TotalCrosses', 'Throw-in', 'PasesExitosos', 'TotalAssist', 'TotalKeyPass', 'TotalFinalThirdPass', 'TotalOpponnentFieldPass']].fillna(0).astype(int)
