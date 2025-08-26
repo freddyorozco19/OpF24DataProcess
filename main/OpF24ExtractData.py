@@ -402,6 +402,7 @@ Conteo_Cross = pases[pases['Cross'] == True].groupby(['matchId', 'player_id', 'p
 Conteo_Throwin = pases[pases['Throw-in'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Throw-in'].count().reset_index(name='Throw-in')
 Conteo_Assist = pases[pases['Assist'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['Assist'].count().reset_index(name='TotalAssist')
 Conteo_KeyPass = pases[pases['KeyPass'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['KeyPass'].count().reset_index(name='TotalKeyPass')
+Conteo_FinalThirdPass = pases[pases['FinalThirdPass'] == True].groupby(['matchId', 'player_id', 'player_name', 'team_id'])['KeyPass'].count().reset_index(name='TotalFinalThirdPass')
 
 # Unir todos los conteos en un solo DataFrame
 Resultado = Conteo_Agrupado.merge(Conteo_Exitosos, on=['matchId', 'player_id', 'player_name', 'team_id'], how='left')
