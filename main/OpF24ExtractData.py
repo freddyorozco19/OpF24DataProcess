@@ -595,6 +595,7 @@ st.subheader("VIZ")
 #df = df.drop(["Out"], axis=1)
 df = df[~df['type_id'].isin(['Out'])]
 
+df = df[df['FinalThirdPass'] == True].reset_index(drop=True)
 
 fig, ax = mplt.subplots(figsize=(8, 8), dpi = 800)
 ax.axis("off")
