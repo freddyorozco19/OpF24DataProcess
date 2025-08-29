@@ -595,7 +595,7 @@ st.subheader("VIZk")
 
 menuoptexpdata01, menuoptexpdata02, menuoptexpdata03, menuoptexpdata04 = st.columns(4)
 with menuoptexpdata01:
-    ListMatchs = df['MatchID'].drop_duplicates().tolist()
+    ListMatchs = df['matchId'].drop_duplicates().tolist()
     #ListMatchSel = st.multiselect('Seleccionar Partidos:', ListMatchs)
     def options_select():
         if "selected_options" in st.session_state:
@@ -605,7 +605,7 @@ with menuoptexpdata01:
             else:
                 st.session_state["max_selections"] = len(ListMatchs)
     available_options = [-1] + ListMatchs
-    ListMatchs = df['MatchID'].drop_duplicates().tolist()
+    ListMatchs = df['matchId'].drop_duplicates().tolist()
     if "max_selections" not in st.session_state:
         st.session_state["max_selections"] = len(ListMatchs)
     
