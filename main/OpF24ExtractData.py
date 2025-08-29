@@ -592,6 +592,54 @@ st.divider()
 
 st.subheader("VIZk")
 
+
+menuoptexpdata01, menuoptexpdata02, menuoptexpdata03, menuoptexpdata04 = st.columns(4)
+with menuoptexpdata01:
+    ListMatchs = df['MatchID'].drop_duplicates().tolist()
+    #ListMatchSel = st.multiselect('Seleccionar Partidos:', ListMatchs)
+    def options_select():
+        if "selected_options" in st.session_state:
+            if -1 in st.session_state["selected_options"]:
+                st.session_state["selected_options"] = [ListMatchs[0]]
+                st.session_state["max_selections"] = 1
+            else:
+                st.session_state["max_selections"] = len(ListMatchs)
+    available_options = [-1] + ListMatchs
+    ListMatchs = df['MatchID'].drop_duplicates().tolist()
+    if "max_selections" not in st.session_state:
+        st.session_state["max_selections"] = len(ListMatchs)
+    
+    ListMatchSel = st.multiselect(
+        label="Seleccionar Partidos:",
+        options=available_options,
+        default=available_options[0],
+        key="selected_options",
+        max_selections=st.session_state["max_selections"],
+        on_change=options_select,
+        format_func=lambda x: "All" if x == -1 else str(x))
+    
+    #df = df[df['MatchID'].isin(ListMatchSel)].reset_index(drop=True)
+with menuoptexpdata02:
+    TeamsOption = df['Team'].drop_duplicates().tolist()
+    TeamSelExpData = st.selectbox("Seleccionar Equipo:", TeamsOption)
+    df = df[df['Team'] == TeamSelExpData].reset_index(drop=True)
+with menuoptexpdata03:
+    PlayersOption = df['Player'].drop_duplicates().tolist()
+    PlayersOption.insert(0, "All Players")
+    PlayerSelExpData = st.selectbox("Seleccionar Jugador:", PlayersOption)
+    dfBK0 = df
+    if PlayerSelExpData == "All Players":
+        df = dfBK0
+        PlayerSelExpData_txt = TeamSelExpData
+    else:
+        df = df[df['Player'] == PlayerSelExpData].reset_index(drop=True)
+        PlayerSelExpData_txt = PlayerSelExpData
+with menuoptexpdata04:
+    PlotVizOption = ['Acciones', 'Pases', 'Remates', 'Acciones Defensivas', 'Posesión']
+    PlotVizSelExpData = st.selectbox("Seleccionar Grupo:", PlotVizOption)
+
+
+
 #df = df.drop(["Out"], axis=1)
 df = df[~df['type_id'].isin(['Out'])]
 
