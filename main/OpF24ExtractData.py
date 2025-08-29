@@ -620,11 +620,11 @@ with menuoptexpdata01:
     
     #df = df[df['MatchID'].isin(ListMatchSel)].reset_index(drop=True)
 with menuoptexpdata02:
-    TeamsOption = df['Team'].drop_duplicates().tolist()
+    TeamsOption = df['team_id'].drop_duplicates().tolist()
     TeamSelExpData = st.selectbox("Seleccionar Equipo:", TeamsOption)
-    df = df[df['Team'] == TeamSelExpData].reset_index(drop=True)
+    df = df[df['team_id'] == TeamSelExpData].reset_index(drop=True)
 with menuoptexpdata03:
-    PlayersOption = df['Player'].drop_duplicates().tolist()
+    PlayersOption = df['player_id'].drop_duplicates().tolist()
     PlayersOption.insert(0, "All Players")
     PlayerSelExpData = st.selectbox("Seleccionar Jugador:", PlayersOption)
     dfBK0 = df
@@ -632,7 +632,7 @@ with menuoptexpdata03:
         df = dfBK0
         PlayerSelExpData_txt = TeamSelExpData
     else:
-        df = df[df['Player'] == PlayerSelExpData].reset_index(drop=True)
+        df = df[df['player_id'] == PlayerSelExpData].reset_index(drop=True)
         PlayerSelExpData_txt = PlayerSelExpData
 with menuoptexpdata04:
     PlotVizOption = ['Acciones', 'Pases', 'Remates', 'Acciones Defensivas', 'Posesión']
