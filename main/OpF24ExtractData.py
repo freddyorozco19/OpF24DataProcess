@@ -689,7 +689,7 @@ if PlotVizSelExpData == "Acciones":
         ax53.axis("off")
         ax53.set_facecolor("#000")
         #st.dataframe(dfDOWN)
-        df = df[(df['EfectiveMinute'] >= EfectMinSel[0]) & (df['EfectiveMinute'] <= EfectMinSel[1])]
+        df = df[(df['min'] >= EfectMinSel[0]) & (df['min'] <= EfectMinSel[1])]
         dfKK = df
         if ColorOptionSel == 'WinStats':
             hex_list2 = ['#121214', '#D81149', '#FF0050']
