@@ -724,7 +724,7 @@ if PlotVizSelExpData == "Acciones":
             #df = df.drop_duplicates(subset=['X1', 'Y1', 'X2', 'Y2'], keep='last')
             #dfKKcleaned = df
             ax.scatter(df['x'], df['y'], color = 'y', edgecolors='w', s=30, zorder=2, alpha=0.2)
-            ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES", c='w', fontsize=10, ha='center')
+            #ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES", c='w', fontsize=10, ha='center')
             #Adding title
             ax9 = fig.add_axes([0.17,0.16,0.20,0.07])
             ax9.axis("off")
