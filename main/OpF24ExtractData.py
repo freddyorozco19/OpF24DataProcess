@@ -723,15 +723,15 @@ if PlotVizSelExpData == "Acciones":
                 
             #df = df.drop_duplicates(subset=['X1', 'Y1', 'X2', 'Y2'], keep='last')
             #dfKKcleaned = df
-            ax.scatter(df['X1'], df['Y1'], color = colorviz, edgecolors='w', s=30, zorder=2, alpha=0.2)
-            ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES", c='w', fontsize=10, fontproperties=prop2, ha='center')
+            ax.scatter(df['X1'], df['Y1'], color = 'y', edgecolors='w', s=30, zorder=2, alpha=0.2)
+            ax.text(52.5,70, "" + PlayerSelExpData_txt.upper() + " - " + str(len(df)) + " TOQUES", c='w', fontsize=10, ha='center')
             #Adding title
             ax9 = fig.add_axes([0.17,0.16,0.20,0.07])
             ax9.axis("off")
             ax9.set_xlim(0,10)
             ax9.set_ylim(0,10)
-            ax9.scatter(2, 4.5, s=120, color=colorviz, edgecolors='#FFFFFF', lw=1)
-            ax9.text(2, 0, 'ACCIONES\nREALIZADAS', fontproperties=prop2, fontsize=9, ha='center', va='center', c='w')
+            ax9.scatter(2, 4.5, s=120, color='y', edgecolors='#FFFFFF', lw=1)
+            ax9.text(2, 0, 'ACCIONES\nREALIZADAS', fontsize=9, ha='center', va='center', c='w')
             dfKK = df
             st.pyplot(fig, bbox_inches="tight", pad_inches=0.05, dpi=400, format="png")
 ################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
