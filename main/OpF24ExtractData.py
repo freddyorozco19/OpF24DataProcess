@@ -640,6 +640,31 @@ with menuoptexpdata04:
 
 st.divider()
 
+################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+
+
+MaxAddMin = df['EfectiveMinute'].max()
+
+
+if PlotVizSelExpData == "Acciones":
+    pltmnop01, pltmnop02, pltmnop03 = st.columns(3)
+    with pltmnop01:
+        OptionPlot = ['Touches Map', 'Touches Zones - Heatmap', 'Touches Gaussian - Heatmap', 'Touches Kernel - Heatmap', 'Territory Actions Map', 'Touches Opponent Field Map', 'Touches Opponent Field - Heatmap', 'Touches Final Third', 'Touches Final Third - Heatmap', 'Touches Penalty Area']
+        OptionPlotSel = st.selectbox('Seleccionar tipo gráfico:', OptionPlot)
+    with pltmnop02:
+        EfectMinSel = st.slider('Seleccionar rango de partido:', 0, MaxAddMin, (0, MaxAddMin))
+    if OptionPlotSel == 'Territory Actions Map': 
+        with pltmnop03:
+            ColorOptionSel = st.color_picker('Selecciona color:', '#FF0046')
+            colorviz = ColorOptionSel
+    else:
+        with pltmnop03:
+            SelOpt = ['WinStats', 'FD']
+            ColorOptionSel = st.selectbox('Selecciona color:', SelOpt)
+    pltmain01, pltmain02 = st.columns(2)
+
+################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+
 #df = df.drop(["Out"], axis=1)
 df = df[~df['type_id'].isin(['Out'])]
 
