@@ -638,7 +638,7 @@ with menuoptexpdata04:
     PlotVizOption = ['Acciones', 'Pases', 'Remates', 'Acciones Defensivas', 'Posesión']
     PlotVizSelExpData = st.selectbox("Seleccionar Grupo:", PlotVizOption)
 
-
+st.divider()
 
 #df = df.drop(["Out"], axis=1)
 df = df[~df['type_id'].isin(['Out'])]
